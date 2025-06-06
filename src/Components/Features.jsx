@@ -1,18 +1,19 @@
-// src/components/Features.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import Products from '../assets/Products';
 import Cart from './Cart';
 
-const Features = () => {
-    const [cart, setCart] = useState([]);
+const Features = ({ cart, setCart }) => {  // Receive cart and setCart as props
 
     const handleCart = (product) => {
-
         setCart(prevCart => {
             const existing = prevCart.find(item => item.id === product.id);
             let updatedCart;
             if (existing) {
-                updatedCart = prevCart.map(item =>item.id === product.id? { ...item, quantity: item.quantity + 1 }: item);
+                updatedCart = prevCart.map(item =>
+                    item.id === product.id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                );
             } else {
                 updatedCart = [...prevCart, { ...product, quantity: 1 }];
             }
@@ -22,11 +23,11 @@ const Features = () => {
                 description: item.description,
                 inStock: item.inStock,
                 quantity: item.quantity
-            })
-        ));
+            })));
             return updatedCart;
         });
     };
+
     return (
         <div className="flex flex-wrap justify-center p-6 bg-gray-100">
             {Products.map(product => (
@@ -42,4 +43,5 @@ const Features = () => {
         </div>
     );
 };
+
 export default Features;

@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Features from "../Components/Features";
 
-const Home = () => {
+const Home = ({ cart, setCart }) => {  
     return (
         <>
         <div className=" bg-gray-100">
@@ -17,7 +16,7 @@ const Home = () => {
             <button className="border cursor-pointer transition-all ease-in-out duration-300 bg-gray-200 hover:bg-blue-100 hover:border-black hover:text-black rounded px-3.5 py-1.5 w-50">Jewelery    </button><br />
         </div>
        </center>
-        <Features />
+        <Features cart={cart} setCart={setCart} />
         </div>
         </>
     );
